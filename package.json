@@ -9,9 +9,21 @@
     "start": "react-native start",
     "test": "jest"
   },
+  "codegenConfig": {
+    "name": "NativeAudioProcessor",
+    "type": "modules",
+    "jsSrcsDir": "src/native"
+  },
   "dependencies": {
+    "expo": "~52.0.0",
+    "expo-av": "^15.1.7",
+    "expo-file-system": "^18.1.11",
+    "expo-modules-core": "^2.5.0",
     "react": "18.3.1",
-    "react-native": "0.76.0"
+    "react-native": "0.77.0"
+  },
+  "resolutions": {
+    "react-native": "0.77.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

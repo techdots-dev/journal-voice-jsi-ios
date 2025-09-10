@@ -1,6 +1,8 @@
 #import "AppDelegate.h"
+#import "AudioProcessor.h"
 
 #import <React/RCTBundleURLProvider.h>
+#import <ExpoModulesCore/EXModuleRegistryProvider.h>
 
 @implementation AppDelegate
 
@@ -12,6 +14,18 @@
   self.initialProps = @{};
 
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
+}
+
+- (NSArray<id<RCTBridgeModule>> *)extraModulesForBridge:(RCTBridge *)bridge
+{
+  // Get all extra modules from Expo
+  NSArray<id<RCTBridgeModule>> *expoModules = [super extraModulesForBridge:bridge];
+  
+  // Add our custom module
+  NSMutableArray<id<RCTBridgeModule>> *modules = [NSMutableArray arrayWithArray:expoModules];
+  [modules addObject:[AudioProcessor new]];
+  
+  return modules;
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
