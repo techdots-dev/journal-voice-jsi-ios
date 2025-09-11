@@ -1,10 +1,7 @@
-// import Foundation
-// import React
-// import UIKit
+import Foundation
+import React
 
-// @objc(AudioProcessorSpec)
-// protocol AudioProcessorSpec: NSObjectProtocol {
-//   func slowDown(_ inputUri: String,
-//                 resolver resolve: @escaping RCTPromiseResolveBlock,
-//                 rejecter reject: @escaping RCTPromiseRejectBlock)
-// }
+@objc(NativeAudioProcessorSpec)
+protocol NativeAudioProcessorSpec: RCTBridgeModule, RCTTurboModule {
+  func slowDown(_ inputUri: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock)
+}
