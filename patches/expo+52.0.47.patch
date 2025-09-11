@@ -1,0 +1,89 @@
+diff --git a/node_modules/expo/ios/Fetch/ExpoFetchCustomExtension.swift b/node_modules/expo/ios/Fetch/ExpoFetchCustomExtension.swift
+index c92311c..c7c7a38 100644
+--- a/node_modules/expo/ios/Fetch/ExpoFetchCustomExtension.swift
++++ b/node_modules/expo/ios/Fetch/ExpoFetchCustomExtension.swift
+@@ -1,12 +1,33 @@
+-// Copyright 2015-present 650 Industries. All rights reserved.
++// Copyright 2015–present 650 Industries. All rights reserved.
++
++import Foundation
+ 
+ /**
+- For callsites to customize network fetch functionalities like having custom `URLSessionConfiguration`.
++ For callsites to customize network fetch functionalities like having custom 'URLSessionConfiguration'.
+  */
+ @objc(EXFetchCustomExtension)
+ public class ExpoFetchCustomExtension: NSObject {
+-  @objc
+-  public static func setCustomURLSessionConfigurationProvider(_ provider: NSURLSessionConfigurationProvider?) {
+-    urlSessionConfigurationProvider = provider
+-  }
++    
++    // Use a class-based wrapper instead of a block type
++    @objc(NSURLSessionConfigurationProvider)
++    public class Provider: NSObject {
++        private let block: () -> URLSessionConfiguration
++        
++        @objc
++        public init(block: @escaping () -> URLSessionConfiguration) {
++            self.block = block
++        }
++        
++        @objc
++        public func createConfiguration() -> URLSessionConfiguration {
++            return block()
++        }
++    }
++    
++    private static var urlSessionConfigurationProvider: Provider?
++    
++    @objc
++    public static func setCustomURLSessionConfigurationProvider(_ provider: Provider?) {
++        urlSessionConfigurationProvider = provider
++    }
+ }
+diff --git a/node_modules/expo/ios/Fetch/ExpoFetchModule.swift b/node_modules/expo/ios/Fetch/ExpoFetchModule.swift
+index b244708..5d0e2b7 100644
+--- a/node_modules/expo/ios/Fetch/ExpoFetchModule.swift
++++ b/node_modules/expo/ios/Fetch/ExpoFetchModule.swift
+@@ -3,7 +3,9 @@
+ import ExpoModulesCore
+ 
+ private let fetchRequestQueue = DispatchQueue(label: "expo.modules.fetch.RequestQueue")
+-internal var urlSessionConfigurationProvider: NSURLSessionConfigurationProvider?
++
++// Change to use the class-based provider
++internal var urlSessionConfigurationProvider: ExpoFetchCustomExtension.Provider?
+ 
+ public final class ExpoFetchModule: Module {
+   private lazy var urlSession = createURLSession()
+@@ -101,18 +103,18 @@ public final class ExpoFetchModule: Module {
+ 
+   private func createURLSession() -> URLSession {
+     let config: URLSessionConfiguration
+-    if let urlSessionConfigurationProvider, let concreteConfig = urlSessionConfigurationProvider() {
+-      config = concreteConfig
++    if let provider = urlSessionConfigurationProvider {
++        config = provider.createConfiguration()
+     } else {
+-      config = URLSessionConfiguration.default
+-      config.httpShouldSetCookies = true
+-      config.httpCookieAcceptPolicy = .always
+-      config.httpCookieStorage = HTTPCookieStorage.shared
+-
+-      let useWifiOnly = Bundle.main.infoDictionary?["ReactNetworkForceWifiOnly"] as? Bool ?? false
+-      if useWifiOnly {
+-        config.allowsCellularAccess = !useWifiOnly
+-      }
++        config = URLSessionConfiguration.default
++        config.httpShouldSetCookies = true
++        config.httpCookieAcceptPolicy = .always
++        config.httpCookieStorage = HTTPCookieStorage.shared
++
++        let useWifiOnly = Bundle.main.infoDictionary?["ReactNetworkForceWifiOnly"] as? Bool ?? false
++        if useWifiOnly {
++            config.allowsCellularAccess = !useWifiOnly
++        }
+     }
+     return URLSession(configuration: config, delegate: urlSessionDelegate, delegateQueue: nil)
+   }
