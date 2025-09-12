@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, TouchableOpacity, Text, NativeModules } from 'react-native';
 import { Audio } from 'expo-av';
 import * as FileSystem from 'expo-file-system';
-import AudioProcessorTurbo from '../native/NativeAudioProcessor';
+import AudioProcessorTurbo from '../modules/AudioProcessorTurbo';
 
 type RecordingStatus = 'idle' | 'recording' | 'recorded';
 
@@ -92,15 +92,16 @@ const AudioRecorder: React.FC = () => {
   };
 
   const benchmark = async () => {
-    // console.time('slowDown');
+    // // console.time('slowDown');
     // const resultLegacy = await NativeModules.AudioProcessor?.slowDown(audioData);
-    // console.timeEnd('slowDown');
-    // // await playAudio(resultLegacy);
+    // // console.timeEnd('slowDown');
+    // await playAudio(resultLegacy);
     // console.log(resultLegacy);
 
     // console.time('slowDown');
+    console.log('inside');
     const resultLegacy = await AudioProcessorTurbo?.slowDown(audioData!);
-    // console.timeEnd('slowDown');
+    // await playAudio(resultLegacy);
     console.log(resultLegacy);
   };
 

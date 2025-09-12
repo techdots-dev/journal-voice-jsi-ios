@@ -10,9 +10,9 @@
     "test": "jest"
   },
   "codegenConfig": {
-    "name": "NativeAudioProcessor",
+    "name": "AudioProcessor",
     "type": "modules",
-    "jsSrcsDir": "src/native"
+    "jsSrcsDir": "src/modules"
   },
   "dependencies": {
     "expo": "~52.0.0",

@@ -12,8 +12,9 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		186F07AA2E72E1A100CAE17F /* NativeAudioProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186F07A82E72E1A100CAE17F /* NativeAudioProcessor.swift */; };
-		186F07AB2E72E1A100CAE17F /* NativeAudioProcessorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186F07A92E72E1A100CAE17F /* NativeAudioProcessorSpec.swift */; };
+		186F07C52E740F0200CAE17F /* AudioProcessorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186F07C22E740F0200CAE17F /* AudioProcessorSpec.swift */; };
+		186F07C62E740F0200CAE17F /* AudioProcessorTurbo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186F07C32E740F0200CAE17F /* AudioProcessorTurbo.swift */; };
+		186F07C72E740F0200CAE17F /* AudioProcessorTurboBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 186F07C42E740F0200CAE17F /* AudioProcessorTurboBridge.m */; };
 		18EE893B2E4CDB180095F11F /* AudioProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE893A2E4CDB180095F11F /* AudioProcessor.m */; };
 		18EE89422E4F51420095F11F /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A9A059AF223242F0A278DE /* ExpoModulesProvider.swift */; };
 		31B69731469502305DCCC419 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
@@ -43,8 +44,9 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = JSIJournalDemo/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = JSIJournalDemo/main.m; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = JSIJournalDemo/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		186F07A82E72E1A100CAE17F /* NativeAudioProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeAudioProcessor.swift; sourceTree = "<group>"; };
-		186F07A92E72E1A100CAE17F /* NativeAudioProcessorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeAudioProcessorSpec.swift; sourceTree = "<group>"; };
+		186F07C22E740F0200CAE17F /* AudioProcessorSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioProcessorSpec.swift; sourceTree = "<group>"; };
+		186F07C32E740F0200CAE17F /* AudioProcessorTurbo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioProcessorTurbo.swift; sourceTree = "<group>"; };
+		186F07C42E740F0200CAE17F /* AudioProcessorTurboBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioProcessorTurboBridge.m; sourceTree = "<group>"; };
 		18EE89392E4CDB180095F11F /* AudioProcessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioProcessor.h; sourceTree = "<group>"; };
 		18EE893A2E4CDB180095F11F /* AudioProcessor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioProcessor.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-JSIJournalDemo-JSIJournalDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JSIJournalDemo-JSIJournalDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,8 +140,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				186F07A82E72E1A100CAE17F /* NativeAudioProcessor.swift */,
-				186F07A92E72E1A100CAE17F /* NativeAudioProcessorSpec.swift */,
+				186F07C22E740F0200CAE17F /* AudioProcessorSpec.swift */,
+				186F07C32E740F0200CAE17F /* AudioProcessorTurbo.swift */,
+				186F07C42E740F0200CAE17F /* AudioProcessorTurboBridge.m */,
 				18EE89392E4CDB180095F11F /* AudioProcessor.h */,
 				18EE893A2E4CDB180095F11F /* AudioProcessor.m */,
 				13B07FAE1A68108700A75B9A /* JSIJournalDemo */,
@@ -479,11 +482,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				18EE89422E4F51420095F11F /* ExpoModulesProvider.swift in Sources */,
+				186F07C52E740F0200CAE17F /* AudioProcessorSpec.swift in Sources */,
+				186F07C62E740F0200CAE17F /* AudioProcessorTurbo.swift in Sources */,
+				186F07C72E740F0200CAE17F /* AudioProcessorTurboBridge.m in Sources */,
 				18EE893B2E4CDB180095F11F /* AudioProcessor.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
-				186F07AA2E72E1A100CAE17F /* NativeAudioProcessor.swift in Sources */,
-				186F07AB2E72E1A100CAE17F /* NativeAudioProcessorSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,6 +580,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = JSIJournalDemo;
+				SWIFT_OBJC_BRIDGING_HEADER = "JSIJournalDemo/JSIJournalDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -604,6 +609,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = JSIJournalDemo;
+				SWIFT_OBJC_BRIDGING_HEADER = "JSIJournalDemo/JSIJournalDemo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

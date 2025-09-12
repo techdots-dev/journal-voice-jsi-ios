@@ -1,7 +1,7 @@
 import Foundation
 import React
 
-@objc(NativeAudioProcessorSpec)
-protocol NativeAudioProcessorSpec: RCTBridgeModule, RCTTurboModule {
+@objc(AudioProcessorSpec)
+protocol AudioProcessorSpec: RCTBridgeModule {
   func slowDown(_ inputUri: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock)
 }

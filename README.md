@@ -46,6 +46,36 @@ If everything is set up _correctly_, you should see your new app running in your
 
 This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
 
+## Using the `AudioProcessorTurbo` TurboModule
+
+The project ships with a sample TurboModule written in Swift that exposes a
+single asynchronous method for slowing down an audio file. To call it from
+JavaScript/TypeScript, import the generated wrapper and invoke the `slowDown`
+function with a file URI:
+
+```ts
+import AudioProcessorTurbo from './src/modules/AudioProcessorTurbo';
+
+async function process(uri: string) {
+  const outputUri = await AudioProcessorTurbo.slowDown(uri);
+  console.log('Processed file at', outputUri);
+}
+```
+
+The module is automatically registered through React Native's new architecture
+and available via `TurboModuleRegistry.getEnforcing`.
+
+### iOS setup checklist
+
+If you see `TurboModuleRegistry.getEnforcing(...): 'AudioProcessorTurbo' could not be found` when
+running from Xcode, double‑check the following:
+
+- `JSIJournalDemo/JSIJournalDemo-Bridging-Header.h` is set under **Build Settings > Swift Compiler – General > Objective-C Bridging Header**
+- `AudioProcessorTurbo.swift`, `AudioProcessorSpec.swift`, and `AudioProcessorTurboBridge.m` are listed in the **Compile Sources** build phase
+
+The `AudioProcessorTurboBridge.m` file contains the `RCT_EXTERN_REMAP_MODULE` macro that lets
+React Native discover the Swift implementation at runtime.
+
 ## Step 3: Modifying your App
 
 Now that you have successfully run the app, let's modify it.

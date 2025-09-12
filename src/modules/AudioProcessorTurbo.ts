@@ -7,4 +7,4 @@ export interface Spec extends TurboModule {
   slowDown(inputUri: string): Promise<string>;
 }
 
-export default TurboModuleRegistry.getEnforcing<Spec>('NativeAudioProcessor');
+export default TurboModuleRegistry.getEnforcing<Spec>('AudioProcessorTurbo');
