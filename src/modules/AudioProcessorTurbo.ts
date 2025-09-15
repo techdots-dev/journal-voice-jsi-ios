@@ -2,7 +2,9 @@ import { TurboModule, TurboModuleRegistry } from 'react-native';
 
 export interface Spec extends TurboModule {
   /**
-   * Slow down audio at 0.75x and return output file URI
+   * Slows down the input audio file and writes to a new file.
+   * @param inputUri - file:// URI of the input audio file
+   * @returns file:// URI of the processed output
    */
   slowDown(inputUri: string): Promise<string>;
 }

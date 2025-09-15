@@ -12,6 +12,8 @@ const AudioRecorder: React.FC = () => {
   const [audioData, setAudioData] = useState<string | null>(null);
 
   useEffect(() => {
+    console.log('New Architecture enabled:',
+      typeof global.__turboModuleProxy === 'function');
     return () => {
       // Clean up on unmount
       if (recording) {
@@ -92,17 +94,22 @@ const AudioRecorder: React.FC = () => {
   };
 
   const benchmark = async () => {
-    // // console.time('slowDown');
+    // console.time('slowDown');
     // const resultLegacy = await NativeModules.AudioProcessor?.slowDown(audioData);
-    // // console.timeEnd('slowDown');
+    // console.timeEnd('slowDown');
     // await playAudio(resultLegacy);
     // console.log(resultLegacy);
 
     // console.time('slowDown');
-    console.log('inside');
-    const resultLegacy = await AudioProcessorTurbo?.slowDown(audioData!);
-    // await playAudio(resultLegacy);
-    console.log(resultLegacy);
+    // console.log('inside');
+    // const resultLegacy = await AudioProcessorTurbo?.slowDown(audioData!);
+    // // await playAudio(resultLegacy);
+    // console.log(resultLegacy);
+    AudioProcessorTurbo?.slowDown(audioData!)?.then((r) => {
+      console.log('res   ', r);
+    }).catch((e) => {
+      console.log('ee   ', e);
+    });
   };
 
   const resetRecording = () => {
