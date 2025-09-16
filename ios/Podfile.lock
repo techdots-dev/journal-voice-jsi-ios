@@ -1845,7 +1845,7 @@ SPEC CHECKSUMS:
   React-timing: 0d0263a5d8ab6fc8c325efb54cee1d6a6f01d657
   React-utils: 8905cd01f46755ea42268875d04c614a0d46431e
   ReactAppDependencyProvider: 6e8d68583f39dc31ee65235110287277eb8556ef
-  ReactCodegen: c08a5113d9c9c895fe10f3c296f74c6b705a60a9
+  ReactCodegen: 791045f0d47d283ee0e6fca989e20319f28ca4bb
   ReactCommon: 1bd2dc684d7992acbf0dfee887b89a57a1ead86d
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   Yoga: 78d74e245ed67bb94275a1316cdc170b9b7fe884
