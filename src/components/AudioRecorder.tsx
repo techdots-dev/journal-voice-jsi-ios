@@ -9,7 +9,7 @@ type RecordingStatus = 'idle' | 'recording' | 'recorded';
 const AudioRecorder: React.FC = () => {
   const [recording, setRecording] = useState<Audio.Recording | null>(null);
   const [status, setStatus] = useState<RecordingStatus>('idle');
-  const [audioData, setAudioData] = useState<string | null>(null);
+  const [audioBlob, setAudioData] = useState<string | null>(null);
 
   useEffect(() => {
     return () => {
@@ -92,14 +92,18 @@ const AudioRecorder: React.FC = () => {
   };
 
   const benchmark = async () => {
-    console.time('slowDown');
-    const resultLegacy = await NativeModules.AudioProcessor?.slowDown(audioData);
-    console.timeEnd('slowDown');
+    const t0 = performance.now();
+    for (let index = 0; index < 3; index++) {
+      await NativeModules.AudioProcessor?.slowDown(audioBlob);
+    }
+    const t1 = performance.now();
+    console.log('[Bridge] slowDown() latency: ', t1 - t0, 'ms');
 
 
-    console.time('slowDown Turbo');
-    const resultTurbo = await AudioProcessor?.slowDown(audioData!);
-    console.timeEnd('slowDown Turbo');
+    const t2 = performance.now();
+    await AudioProcessor?.slowDown(audioBlob!);
+    const t3 = performance.now();
+    console.log('[Turbo] slowDown() latency: ', t3 - t2, 'ms');
   };
 
   const resetRecording = () => {
