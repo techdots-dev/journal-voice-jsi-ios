@@ -10,8 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RCTNativeAudioProcessorSpec : NSObject <NativeAudioProcessorSpec>
+@interface RCTNativeAudioProcessor : NativeAudioProcessorSpecBase <NativeAudioProcessorSpec>
 
 @end
 
 NS_ASSUME_NONNULL_END
+

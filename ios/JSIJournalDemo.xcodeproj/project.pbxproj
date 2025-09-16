@@ -12,6 +12,7 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		186F08042E79766600CAE17F /* RCTNativeAudioProcessor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 186F08032E79766600CAE17F /* RCTNativeAudioProcessor.mm */; };
 		18EE893B2E4CDB180095F11F /* AudioProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EE893A2E4CDB180095F11F /* AudioProcessor.m */; };
 		18EE89422E4F51420095F11F /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A9A059AF223242F0A278DE /* ExpoModulesProvider.swift */; };
 		31B69731469502305DCCC419 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
@@ -41,6 +42,8 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = JSIJournalDemo/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = JSIJournalDemo/main.m; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = JSIJournalDemo/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		186F08022E79766600CAE17F /* RCTNativeAudioProcessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTNativeAudioProcessor.h; sourceTree = "<group>"; };
+		186F08032E79766600CAE17F /* RCTNativeAudioProcessor.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RCTNativeAudioProcessor.mm; sourceTree = "<group>"; };
 		18EE89392E4CDB180095F11F /* AudioProcessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AudioProcessor.h; sourceTree = "<group>"; };
 		18EE893A2E4CDB180095F11F /* AudioProcessor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AudioProcessor.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-JSIJournalDemo-JSIJournalDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JSIJournalDemo-JSIJournalDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +109,15 @@
 			name = JSIJournalDemo;
 			sourceTree = "<group>";
 		};
+		18EE89452E4F60000095F11F /* NativeAudioProcessor */ = {
+			isa = PBXGroup;
+			children = (
+				186F08022E79766600CAE17F /* RCTNativeAudioProcessor.h */,
+				186F08032E79766600CAE17F /* RCTNativeAudioProcessor.mm */,
+			);
+			path = NativeAudioProcessor;
+			sourceTree = "<group>";
+		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +148,7 @@
 			children = (
 				18EE89392E4CDB180095F11F /* AudioProcessor.h */,
 				18EE893A2E4CDB180095F11F /* AudioProcessor.m */,
+				18EE89452E4F60000095F11F /* NativeAudioProcessor */,
 				13B07FAE1A68108700A75B9A /* JSIJournalDemo */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* JSIJournalDemoTests */,
@@ -475,6 +488,7 @@
 				18EE89422E4F51420095F11F /* ExpoModulesProvider.swift in Sources */,
 				18EE893B2E4CDB180095F11F /* AudioProcessor.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
+				186F08042E79766600CAE17F /* RCTNativeAudioProcessor.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

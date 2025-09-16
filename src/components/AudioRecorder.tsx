@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, TouchableOpacity, Text, NativeModules } from 'react-native';
 import { Audio } from 'expo-av';
 import * as FileSystem from 'expo-file-system';
-import NativeAudioProcessor from '../../specs/NativeAudioProcessor';
+import AudioProcessor from '../../specs/NativeAudioProcessor';
 
 type RecordingStatus = 'idle' | 'recording' | 'recorded';
 
@@ -12,8 +12,6 @@ const AudioRecorder: React.FC = () => {
   const [audioData, setAudioData] = useState<string | null>(null);
 
   useEffect(() => {
-    console.log('New Architecture enabled:',
-      typeof global.__turboModuleProxy === 'function');
     return () => {
       // Clean up on unmount
       if (recording) {
@@ -94,23 +92,14 @@ const AudioRecorder: React.FC = () => {
   };
 
   const benchmark = async () => {
-    // console.time('slowDown');
-    // const resultLegacy = await NativeModules.AudioProcessor?.slowDown(audioData);
-    // console.timeEnd('slowDown');
-    // await playAudio(resultLegacy);
-    // console.log(resultLegacy);
+    console.time('slowDown');
+    const resultLegacy = await NativeModules.AudioProcessor?.slowDown(audioData);
+    console.timeEnd('slowDown');
 
-    // console.time('slowDown');
-    // console.log('inside');
-    // const resultLegacy = await AudioProcessorTurbo?.slowDown(audioData!);
-    // // await playAudio(resultLegacy);
-    // console.log(resultLegacy);
 
-    NativeAudioProcessor?.slowDown(audioData!)?.then((r) => {
-      console.log('res   ', r);
-    }).catch((e) => {
-      console.log('ee   ', e);
-    });
+    console.time('slowDown Turbo');
+    const resultTurbo = await AudioProcessor?.slowDown(audioData!);
+    console.timeEnd('slowDown Turbo');
   };
 
   const resetRecording = () => {
